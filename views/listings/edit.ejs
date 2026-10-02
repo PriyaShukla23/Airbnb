@@ -69,7 +69,16 @@
         required>
         <div class="invalid-feedback">Location should be valid</div>
         </div>
-
+        <div class="mb-3">
+  <label for="category" class="form-label">Category</label>
+  <select name="listing[category]" id="category" class="form-select" required>
+    <% categories.forEach(c => { %>
+      <option value="<%= c.name %>" <%= listing.category === c.name ? "selected" : "" %>>
+        <%= c.name %>
+      </option>
+    <% }) %>
+  </select>
+</div>
         <button class="btn btn-dark edit-btn mt-3 mb-3">Edit</button>
    
     </form>
