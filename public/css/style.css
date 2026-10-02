@@ -157,6 +157,56 @@ body{
     font-family: inherit;
 }
 
+html,
+body {
+    height: 100%;
+}
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
+.container {
+    flex: 1;
+}
+
+/* Footer */
+.f-info {
+    height: 8rem;
+    background-color: #ebebeb;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: space-evenly;
+
+    text-align: center;
+}
+
+.f-info-socials,
+.f-info-brand,
+.f-info-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222;
+    margin-right: 1rem;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
 
