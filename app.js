@@ -58,16 +58,20 @@ store.on("error", (err) => {
     console.log("ERROR IN MONGO SESSION STORE", err);
 });
 
+const isProd = process.env.NODE_ENV === "production";
+if (isProd) app.set("trust proxy", 1);
+
 const sessionOptions = {
     store,
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-    },  
+        secure: isProd,
+        sameSite: "lax",
+    },
 };
 
 // app.get("/",(req,res) => {
@@ -114,6 +118,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error.ejs",{message, currUser: req.user});
 });
 
-app.listen(8080,() => {
-    console.log("Server is running on port 8080");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
